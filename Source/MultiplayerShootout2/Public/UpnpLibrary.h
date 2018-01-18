@@ -16,7 +16,7 @@ class MULTIPLAYERSHOOTOUT2_API UUpnpLibrary : public UBlueprintFunctionLibrary
 	
 	public:
 		/* Change Localization at Runtime. */
-		UFUNCTION(BlueprintCallable, meta = (DisplayName = "Get router"), Category = "Locale")
+		UFUNCTION(BlueprintCallable, meta = (DisplayName = "Get router"), Category = "UpnpLibrary")
 			static void getRouter();
 	
 	

@@ -1,15 +1,29 @@
 // Fill out your copyright notice in the Description page of Project Settings.
+using System.IO;
 using UnrealBuildTool;
 
 public class MultiplayerShootout2 : ModuleRules
 {
+    //Get the directory of the module
+    private string ModulePath
+    {
+        get { return ModuleDirectory; }
+    }
+
+    //Get the directory of third party libs
+    private string ThirdPartyPath
+    {
+        get { return Path.GetFullPath(Path.Combine(ModulePath, "../../ThirdParty/")); }
+    }
+
     public MultiplayerShootout2(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 	
 		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore" });
+       //PublicDependencyModuleNames.Add("MiniUPnP");
 
-		PrivateDependencyModuleNames.AddRange(new string[] {  });
+       // PrivateDependencyModuleNames.AddRange(new string[] {  });
 
         LoadLibUpnp(Target);
 
@@ -22,13 +36,7 @@ public class MultiplayerShootout2 : ModuleRules
         // To include OnlineSubsystemSteam, add it to the plugins section in your uproject file with the Enabled attribute set to true
     }
 
-    private string ThirdPartyPath
-    {
-        get { return Path.GetFullPath(Path.Combine(ModulePath, "../../ThirdParty/")); }
-    }
-
-
-        public bool LoadBobsMagic(TargetInfo Target)
+    public bool LoadLibUpnp(ReadOnlyTargetRules Target)
         {
             bool isLibrarySupported = false;
 
@@ -37,24 +45,26 @@ public class MultiplayerShootout2 : ModuleRules
                 isLibrarySupported = true;
 
                 string PlatformString = (Target.Platform == UnrealTargetPlatform.Win64) ? "x64" : "x86";
-                string LibrariesPath = Path.Combine(ThirdPartyPath, "MiniUPnP", "Libraries");
+                string LibrariesPath = Path.Combine(ThirdPartyPath, "MiniUPnP", "lib");
 
-                /*
-                test your path with:
-                using System; // Console.WriteLine("");
-                Console.WriteLine("... LibrariesPath -> " + LibrariesPath);
-                */
+            /*
+            test your path with:
+            using System; // Console.WriteLine("");
+            Console.WriteLine("... LibrariesPath -> " + LibrariesPath);
+            */
 
-                PublicAdditionalLibraries.Add(Path.Combine(LibrariesPath, "MiniUPnP." + PlatformString + ".lib"));
+            // If focus on x64 lib.x64.so
+            // PublicAdditionalLibraries.Add(Path.Combine(LibrariesPath, "MiniUPnP." + PlatformString + ".so"));
+            PublicAdditionalLibraries.Add(Path.Combine(LibrariesPath, "libminiupnpc.so"));
             }
 
             if (isLibrarySupported)
             {
                 // Include path
-                PublicIncludePaths.Add(Path.Combine(ThirdPartyPath, "MiniUPnP", "Includes"));
+                PublicIncludePaths.Add(Path.Combine(ThirdPartyPath, "MiniUPnP", "include"));
             }
 
-            Definitions.Add(string.Format("WITH_BOBS_MAGIC_BINDING={0}", isLibrarySupported ? 1 : 0));
+            Definitions.Add(string.Format("WITH_MINI_UPNP_BINDING={0}", isLibrarySupported ? 1 : 0));
 
             return isLibrarySupported;
         }
