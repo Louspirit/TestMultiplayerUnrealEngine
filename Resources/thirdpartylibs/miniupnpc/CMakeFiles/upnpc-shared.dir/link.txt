@@ -1,0 +1,1 @@
+/usr/bin/cc  -fPIC -Wall  -O2 -g -DNDEBUG  -Wl,--enable-auto-import CMakeFiles/upnpc-shared.dir/upnpc.c.o  -o upnpc-shared.exe -Wl,--out-implib,libupnpc-shared.dll.a -Wl,--major-image-version,0,--minor-image-version,0  libminiupnpc.dll.a 

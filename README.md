@@ -14,3 +14,9 @@ En affichant "Internet mode", cliquer sur play
 Sur un PC: taper la commande open "IP_AUTRE_PC:7777"
 
 
+Pour miniupnpc:
+Installer mingw64 https://www.gaia-gis.it/gaia-sins/mingw64_how_to.html et mettre dans le path
+Installer https://github.com/upx/upx/releases/tag/v3.94 et mettre dans le path
+Lancer Resources/thirdpartylibs/miniupnpc/mingw32make.bat
+
+

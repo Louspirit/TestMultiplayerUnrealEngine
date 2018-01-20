@@ -1,0 +1,1 @@
+/usr/bin/cc  -fPIC -Wall  -O2 -g -DNDEBUG  -Wl,--enable-auto-import CMakeFiles/upnpc-static.dir/upnpc.c.o  -o upnpc-static.exe -Wl,--out-implib,libupnpc-static.dll.a -Wl,--major-image-version,0,--minor-image-version,0  libminiupnpc.a 

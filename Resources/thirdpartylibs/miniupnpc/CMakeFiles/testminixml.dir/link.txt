@@ -1,0 +1,1 @@
+/usr/bin/cc  -fPIC -Wall  -O2 -g -DNDEBUG  -Wl,--enable-auto-import CMakeFiles/testminixml.dir/testminixml.c.o CMakeFiles/testminixml.dir/minixml.c.o CMakeFiles/testminixml.dir/igd_desc_parse.c.o  -o testminixml.exe -Wl,--out-implib,libtestminixml.dll.a -Wl,--major-image-version,0,--minor-image-version,0  

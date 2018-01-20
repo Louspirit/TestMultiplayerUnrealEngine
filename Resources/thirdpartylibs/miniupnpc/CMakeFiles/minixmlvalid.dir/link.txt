@@ -1,0 +1,1 @@
+/usr/bin/cc  -fPIC -Wall  -O2 -g -DNDEBUG  -Wl,--enable-auto-import CMakeFiles/minixmlvalid.dir/minixmlvalid.c.o CMakeFiles/minixmlvalid.dir/minixml.c.o  -o minixmlvalid.exe -Wl,--out-implib,libminixmlvalid.dll.a -Wl,--major-image-version,0,--minor-image-version,0  
