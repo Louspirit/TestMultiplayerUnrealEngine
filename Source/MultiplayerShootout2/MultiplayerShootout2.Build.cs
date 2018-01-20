@@ -55,7 +55,7 @@ public class MultiplayerShootout2 : ModuleRules
 
             // If focus on x64 lib.x64.so
             // PublicAdditionalLibraries.Add(Path.Combine(LibrariesPath, "MiniUPnP." + PlatformString + ".so"));
-            PublicAdditionalLibraries.Add(Path.Combine(LibrariesPath, "libminiupnpc.a"));
+            PublicAdditionalLibraries.Add(Path.Combine(LibrariesPath, "miniupnpc.lib"));
             }
 
             if (isLibrarySupported)
