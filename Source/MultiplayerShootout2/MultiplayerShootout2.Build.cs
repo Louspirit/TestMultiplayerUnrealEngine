@@ -20,12 +20,12 @@ public class MultiplayerShootout2 : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 	
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore" });
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "UDPPlugin" });
        //PublicDependencyModuleNames.Add("MiniUPnP");
 
        // PrivateDependencyModuleNames.AddRange(new string[] {  });
 
-        LoadLibUpnp(Target);
+      //  LoadLibUpnp(Target);
 
         // Uncomment if you are using Slate UI
         // PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });
@@ -53,16 +53,18 @@ public class MultiplayerShootout2 : ModuleRules
             Console.WriteLine("... LibrariesPath -> " + LibrariesPath);
             */
 
-            // If focus on x64 lib.x64.so
-            // PublicAdditionalLibraries.Add(Path.Combine(LibrariesPath, "MiniUPnP." + PlatformString + ".so"));
-            PublicAdditionalLibraries.Add(Path.Combine(LibrariesPath, "miniupnpc.lib"));
-            }
-
-            if (isLibrarySupported)
-            {
+            //if (isLibrarySupported)
+            //{
                 // Include path
                 PublicIncludePaths.Add(Path.Combine(ThirdPartyPath, "MiniUPnP", "include"));
+            //   }
+
+            // If focus on x64 lib.x64.so
+             //PublicAdditionalLibraries.Add(Path.Combine(LibrariesPath, "miniupnpc." + PlatformString + ".lib"));
+            PublicLibraryPaths.Add(Path.Combine(ThirdPartyPath, "MiniUPnP/lib/miniupnpc.lib"));
+           
             }
+                   
 
             Definitions.Add(string.Format("WITH_MINI_UPNP_BINDING={0}", isLibrarySupported ? 1 : 0));
 
