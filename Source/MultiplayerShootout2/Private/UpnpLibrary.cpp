@@ -23,6 +23,7 @@
 /* Change Localization at Runtime. */
 void UUpnpLibrary::getRouter()
 {
+	UE_LOG(LogTemp, Warning, TEXT("TEST LOG"));
 	int error = 0;
 	//MultiplayerShootout2Module::test();
 	//test();
@@ -30,7 +31,8 @@ void UUpnpLibrary::getRouter()
 	//	0, 1900,
 	//	0, 2,
 	//	&error);
-	 struct UPNPDev *upnp_dev = upnpDiscover(
+	struct UPNPDev * devlist = 0;
+	 devlist = upnpDiscover(
 		 2000, // time to wait (milliseconds)
 		 NULL, // multicast interface (or null defaults to 239.255.255.250)
 		 NULL, // path to minissdpd socket (or null defaults to /var/run/minissdpd.sock)
@@ -38,7 +40,18 @@ void UUpnpLibrary::getRouter()
 		 0, // 0==IPv4, 1==IPv6
 		 2, // Defautl TTL
 		 &error); // error condition
-
+	 if (devlist)
+	 {
+		 struct UPNPDev * device;
+		 UE_LOG(LogTemp, Warning, TEXT("List of UPNP devices found on the network :\n"));
+	
+		 for (device = devlist; device; device = device->pNext)
+		 {
+			 FString log1(device->descURL);
+			 FString log2(device->st);
+			 UE_LOG(LogTemp, Warning, TEXT("desc: %s\n st: %s\n\n"), *log1, *log2);
+		 }
+	 }
 	/* char lan_address[64];
 	 struct UPNPUrls upnp_urls;
 	 struct IGDdatas upnp_data;
