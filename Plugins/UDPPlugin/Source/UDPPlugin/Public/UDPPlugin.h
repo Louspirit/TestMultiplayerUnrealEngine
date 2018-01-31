@@ -14,7 +14,22 @@ public:
 	/** IModuleInterface implementation */
 	virtual void StartupModule() override;
 	virtual void ShutdownModule() override;
-	static UPNPDev* discoverNetworkDevices();
+	/**
+		Get the list of UDP devices on the network.
+	**/
+	static UPNPDev* GetUPNPDevices();
+	/**
+	 Is the port already forwared ?
+	**/
+	static bool IsPortForwarded(int portToCheck);
+	/**
+		Adds port forward.
+	**/
+	static bool AddPortForward(int portToCheck);
+	/**
+		Entire treatment of configuring the UPNP router.
+	**/
+	static int FindAndConfigureRouter(const char* portToCheck);
 	/**
 	* Singleton-like access to this module's interface.  This is just for convenience!
 	* Beware of calling this during the shutdown phase, though.  Your module might have been unloaded already.

@@ -17,9 +17,9 @@ class MULTIPLAYERSHOOTOUT2_API UUpnpLibrary : public UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
 	public:
-		/* Change Localization at Runtime. */
+		/* Configure automatically the router to allow the given port. */
 		UFUNCTION(BlueprintCallable, meta = (DisplayName = "Get router"), Category = UpnpLibrary)
-			static void getRouter();
+			static int ConfigureRouter(FString portToUse);
 	
 	
 };

@@ -1,19 +1,24 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "UpnpLibrary.h"
-#include <string>
 #include "UDPPlugin.h"
 
 //General Log
 DEFINE_LOG_CATEGORY(LogNetworkLibrary);
 
-/* Change Localization at Runtime. */
-void UUpnpLibrary::getRouter()
+/* Configure automatically the router to allow the given port. */
+int UUpnpLibrary::ConfigureRouter(FString portToUse)
 {
-	UPNPDev* devlist = 0;
+	bool devlist = false;
 	UE_LOG(LogNetworkLibrary, Verbose, TEXT("Entrée Méthode getRouter"));
+
+	//Convert FString in char*
+	char* portGoodFormat = TCHAR_TO_ANSI(*portToUse);
+
 	if (FUDPPluginModule::IsAvailable()) {
-		devlist = FUDPPluginModule::Get().discoverNetworkDevices();
+		return FUDPPluginModule::Get().FindAndConfigureRouter(portGoodFormat);
 	}
-	
+	//Error with the plugin
+
+	return 404;
 } 
