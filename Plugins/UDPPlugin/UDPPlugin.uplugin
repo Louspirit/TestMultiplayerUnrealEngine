@@ -16,7 +16,7 @@
 	"Modules": [
 		{
 			"Name": "UDPPlugin",
-			"Type": "Developer",
+			"Type": "Runtime",
 			"LoadingPhase": "Default"
 		}
 	]
